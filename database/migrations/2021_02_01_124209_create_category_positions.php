@@ -17,7 +17,7 @@ class CreateCategoryPositions extends Migration
             $table->id();
             $table->integer('category_id');
             $table->integer('sub_category_id');
-            $table->dateTime('date');
+            $table->dateTime('date')->index();
             $table->integer('position');
             $table->timestamps();
         });

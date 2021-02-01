@@ -29,16 +29,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         RateLimiter::for('api_limit', function(Request $request) {
+
             return Limit::perMinute(5)->response(function() {
-
                 Log::channel("api_logs")->info("API /appTopCategory rate limit exceeded");
-
                 return new Response([
                     'status_code' => 400,
                     'message' => 'bad',
                     'data' => 'API calls rate limit exceeded (max 5 per minute)'
                 ]);
             });
+
         });
     }
 }
